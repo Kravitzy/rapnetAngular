@@ -14,5 +14,10 @@ export class DiamondsService {
     // var list = this.http.get("https://localhost:44396/api/diamonds");
     return this.http.get("https://localhost:44396/api/diamonds");
   }
+
+  public addDiamond(diamond : Diamond):Observable<Diamond> {
+    return this.http.post<Diamond>("https://localhost:44396/api/diamonds",diamond);
+}
+
   
 }

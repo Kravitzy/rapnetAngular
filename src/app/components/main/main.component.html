@@ -1,16 +1,37 @@
-<mat-tab-group>
-
-    <mat-tab label="Capture">Capture</mat-tab>
-    <mat-tab label="Clarify">Clarify</mat-tab>
-    <mat-tab label="Organize">Organize</mat-tab>
-    <mat-tab label="Reflect">Reflect</mat-tab>
-    <mat-tab label="Engage">Engage</mat-tab>
-
-</mat-tab-group>
-
 <h2>Data Table</h2>
-<app-data-table></app-data-table>
+<table>
+    <tr>
+        <td>shape</td>
+        <td>size</td>
+        <td>color</td>
+        <td>clarity</td>
+        <td>price</td>
+        <td>list price</td>
+    </tr>
+    <tr *ngFor="let diamond of diamonds;">
+        <td> {{diamond.shape}}</td>
+        <td> {{diamond.size}}</td>
+        <td> {{diamond.color}}</td>
+        <td> {{diamond.clarity}}</td>
+        <td> {{diamond.price}}</td>
+        <td> {{diamond.listPrice}}</td>
+    </tr>
+</table>
 
+<!-- <h2>Get Request</h2>
+<div>{{ diamonds | json }}</div> -->
 
-<h2>Get Request</h2>
-<div>{{ diamonds | json }}</div>
+<h2>Add new product</h2>
+<form (submit)="addNewProduct()">
+    <input type="text" placeholder="Name..." name="name" [(ngModel)]="diamond.id">
+    <br>
+
+    <input type="number" placeholder="Price..." name="price" [(ngModel)]="diamond.size">
+    <br>
+
+    <input type="number" placeholder="Stock..." name="stock" [(ngModel)]="diamond.shape">
+    <br>
+
+    <button>Add</button>
+
+</form>
