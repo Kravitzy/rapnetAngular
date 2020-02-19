@@ -1,23 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { DiamondsService } from '../../Services/diamonds.service';
 import { Diamond } from 'src/app/models/diamond';
+import { FormBuilder, FormGroup , Validators} from '@angular/forms';
 
-export interface DataTableItem {
-  Size : number;
-  Color : string;
-  Clarity : string;
-  Price : number;
-  ListPrice : number;
-  Id : number;
-}
-
-
-const ELEMENT_DATA: DataTableItem[] = [
-  {Size: 1, Color: 'Hydrogen', Clarity: "IV", Price:10000, ListPrice:12000, Id : 1 },
-  {Size: 1, Color: 'Helium', Clarity: "IV", Price:10000, ListPrice:12000, Id : 2 },
-  {Size: 1, Color: 'Lithium', Clarity: "IV", Price:10000, ListPrice:12000, Id : 3 },
-  {Size: 1, Color: 'Beryllium', Clarity: "IV", Price:10000, ListPrice:12000, Id : 4 }
-];
 
 @Component({
   selector: 'app-main',
@@ -26,25 +11,53 @@ const ELEMENT_DATA: DataTableItem[] = [
 })
 export class MainComponent implements OnInit {
 
-  constructor(private diamondsService: DiamondsService)  { }
+  constructor(private diamondsService: DiamondsService, private fb: FormBuilder) { }
+
+  diamondForm: FormGroup;
+  submitted = false;
   
-  diamonds : Diamond[];
+  diamonds: Diamond[];
   diamond = new Diamond();
 
-  ngOnInit() {
+  getDiamondsList(){
     this.diamondsService.getDiamonds().subscribe(
-        data =>{
-            this.diamonds = data;
-        }
+      data => {
+        this.diamonds = data;
+      }
     );
-    
   }
 
-  public addNewProduct(): void {
+  ngOnInit() {
+    this.createForm();
+    this.getDiamondsList();
+  }
+
+  createForm() {
+    this.diamondForm = this.fb.group({
+      Shape: ['', Validators.required],
+      Size: ['', Validators.required],
+      Color: ['', Validators.required],
+      Clarity: ['', Validators.required],
+      Price: ['', Validators.required],
+      ListPrice: ['', Validators.required]
+    });
+  }
+
+   // convenience getter for easy access to form fields
+   get f() { return this.diamondForm.controls; }
+
+  public onSubmit(): void {
+    this.submitted = true;
+
+    if (this.diamondForm.invalid) {
+      return;
+    }
+
     this.diamondsService.addDiamond(this.diamond)
-        .subscribe(
-            addedDiamond => alert("Succeed Added Product! ID: " + addedDiamond.Id),
-            err => alert(err.message));
+      .subscribe(
+        
+        addedDiamond => {alert("Succeed Added Product! ID: " + addedDiamond.Id); this.getDiamondsList();},
+        err => alert(err.message));
   }
 
 
