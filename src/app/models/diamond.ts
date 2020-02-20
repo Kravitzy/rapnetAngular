@@ -1,10 +1,10 @@
 export class Diamond {
 
-      Shape : string;
-      Size : number;
-      Color : string;
-      Clarity : string;
-      Price : number;
-      ListPrice : number;
-      Id : number;
+      shape : string;
+      size : number;
+      color : string;
+      clarity : string;
+      price : number;
+      listPrice : number;
+      id : number;
 }

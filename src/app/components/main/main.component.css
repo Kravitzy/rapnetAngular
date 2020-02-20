@@ -11,3 +11,10 @@ table, td, th {
   th, td {
     padding: 15px;
   }
+
+  h2, form {
+    text-align: center;
+  }
+  
+
+  

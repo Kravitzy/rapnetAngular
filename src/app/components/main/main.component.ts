@@ -18,11 +18,25 @@ export class MainComponent implements OnInit {
   
   diamonds: Diamond[];
   diamond = new Diamond();
+  diamondAmmount : number;
+  avaragePrice : number;
+  avarageListPrice : number;
 
   getDiamondsList(){
     this.diamondsService.getDiamonds().subscribe(
       data => {
         this.diamonds = data;
+
+        // update the stats data
+        this.diamondAmmount = this.diamonds.length;
+        let sumPrice = 0;
+        let sumListPrice = 0;
+        this.diamonds.forEach(element => {
+          sumPrice += element.price;
+          sumListPrice += element.listPrice;
+        });
+        this.avaragePrice = sumPrice / this.diamonds.length;
+        this.avarageListPrice = sumListPrice / this.diamonds.length;
       }
     );
   }
@@ -56,7 +70,7 @@ export class MainComponent implements OnInit {
     this.diamondsService.addDiamond(this.diamond)
       .subscribe(
         
-        addedDiamond => {alert("Succeed Added Product! ID: " + addedDiamond.Id); this.getDiamondsList();},
+        addedDiamond => {alert("Succeed Added Product! ID: " + addedDiamond.id); this.getDiamondsList();},
         err => alert(err.message));
   }
 

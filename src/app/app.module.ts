@@ -9,9 +9,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import {MaterialModule } from './modules/material/material.module';
 
-import { AngularFireModule } from 'angularfire2';
-
-import { AngularFirestoreModule  } from 'angularfire2/firestore';
 import { LayoutComponent } from './components/layout/layout.component';
 import { MainComponent } from './components/main/main.component';
 import { LayoutModule } from '@angular/cdk/layout';
@@ -19,11 +16,9 @@ import { Page404Component } from './components/page404/page404.component';
 
 import { HttpClientModule } from '@angular/common/http';
 import { DiamondsService } from './Services/diamonds.service';
-import { DataTableComponent } from './components/data-table/data-table.component';
-import { MatTableModule } from '@angular/material/table';
-import { MatPaginatorModule } from '@angular/material/paginator';
-import { MatSortModule } from '@angular/material/sort';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ContactComponent } from './components/contact/contact.component';
+import { AboutComponent } from './components/about/about.component';
 
 
 @NgModule({
@@ -32,20 +27,16 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     LayoutComponent,
     MainComponent,
     Page404Component,
-    DataTableComponent,
+    ContactComponent,
+    AboutComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
-    // AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFirestoreModule,
     LayoutModule,
     HttpClientModule,
-    MatTableModule,
-    MatPaginatorModule,
-    MatSortModule,
     FormsModule,
     ReactiveFormsModule
   ],
