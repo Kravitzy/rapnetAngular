@@ -7,4 +7,5 @@ export class Diamond {
       price : number;
       listPrice : number;
       id : number;
+      discount : number;
 }

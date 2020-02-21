@@ -17,10 +17,10 @@ export class MainComponent implements OnInit {
   submitted = false;
   
   diamonds: Diamond[];
-  diamond = new Diamond();
+  diamond : Diamond;
   diamondAmmount : number;
+  avarageDiscount : number;
   avaragePrice : number;
-  avarageListPrice : number;
 
   getDiamondsList(){
     this.diamondsService.getDiamonds().subscribe(
@@ -29,19 +29,31 @@ export class MainComponent implements OnInit {
 
         // update the stats data
         this.diamondAmmount = this.diamonds.length;
-        let sumPrice = 0;
-        let sumListPrice = 0;
+        let sumPrice = 0; 
+        let sumListPriceWithDiscount = 0;
+        let sumDiscount = 0;
+        let ammountDiscount = 0;
+
         this.diamonds.forEach(element => {
           sumPrice += element.price;
-          sumListPrice += element.listPrice;
+          
+          if (element.price <  element.listPrice ){
+            element.discount = (element.listPrice - element.price) / element.listPrice;
+            sumListPriceWithDiscount += element.listPrice;
+            sumDiscount += element.discount;
+            ammountDiscount++;
+          }
         });
+
         this.avaragePrice = sumPrice / this.diamonds.length;
-        this.avarageListPrice = sumListPrice / this.diamonds.length;
+        this.avarageDiscount = sumDiscount / ammountDiscount;
+
       }
     );
   }
 
   ngOnInit() {
+    this.diamond = new Diamond();
     this.createForm();
     this.getDiamondsList();
   }
@@ -69,8 +81,7 @@ export class MainComponent implements OnInit {
 
     this.diamondsService.addDiamond(this.diamond)
       .subscribe(
-        
-        addedDiamond => {alert("Succeed Added Product! ID: " + addedDiamond.id); this.getDiamondsList();},
+        addedDiamond => {alert("Succeed Added Diamond! ID: " + addedDiamond.id); this.getDiamondsList();},
         err => alert(err.message));
   }
 
