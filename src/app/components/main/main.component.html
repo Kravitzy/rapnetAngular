@@ -41,42 +41,42 @@
 <form [formGroup]="diamondForm" novalidate (submit)="onSubmit()">
     <div class="form-group">
 
-        <input type="text" placeholder="Shape" formControlName="Shape" class="form-control" [(ngModel)]="diamond.Shape"
+        <input type="text" placeholder="Shape" formControlName="Shape" class="form-control" [(ngModel)]="diamond.shape"
             [ngClass]="{ 'is-invalid': submitted && f.Shape.errors }" />
         <div *ngIf="submitted && f.Shape.errors" class="invalid-feedback">
             <div *ngIf="f.Shape.errors.required">Shape is required</div>
         </div>
         <br>
 
-        <input type="number" placeholder="Size" formControlName="Size" class="form-control" [(ngModel)]="diamond.Size"
+        <input type="number" placeholder="Size" formControlName="Size" class="form-control" [(ngModel)]="diamond.size"
             [ngClass]="{ 'is-invalid': submitted && f.Size.errors }" />
         <div *ngIf="submitted && f.Size.errors" class="invalid-feedback">
             <div *ngIf="f.Size.errors.required">Size is required</div>
         </div>
         <br>
 
-        <input type="text" placeholder="Color" formControlName="Color" class="form-control" [(ngModel)]="diamond.Color"
+        <input type="text" placeholder="Color" formControlName="Color" class="form-control" [(ngModel)]="diamond.color"
             [ngClass]="{ 'is-invalid': submitted && f.Color.errors }" />
         <div *ngIf="submitted && f.Color.errors" class="invalid-feedback">
             <div *ngIf="f.Color.errors.required">Color is required</div>
         </div>
         <br>
 
-        <input type="text" placeholder="Clarity" formControlName="Clarity" class="form-control" [(ngModel)]="diamond.Clarity"
+        <input type="text" placeholder="Clarity" formControlName="Clarity" class="form-control" [(ngModel)]="diamond.clarity"
             [ngClass]="{ 'is-invalid': submitted && f.Clarity.errors }" />
         <div *ngIf="submitted && f.Clarity.errors" class="invalid-feedback">
             <div *ngIf="f.Clarity.errors.required">Clarity is required</div>
         </div>
         <br>
 
-        <input type="number" placeholder="Price" formControlName="Price" class="form-control" [(ngModel)]="diamond.Price"
+        <input type="number" placeholder="Price" formControlName="Price" class="form-control" [(ngModel)]="diamond.price"
             [ngClass]="{ 'is-invalid': submitted && f.Price.errors }" />
         <div *ngIf="submitted && f.Price.errors" class="invalid-feedback">
             <div *ngIf="f.Price.errors.required">Price is required</div>
         </div>
         <br>
 
-        <input type="number" placeholder="ListPrice" formControlName="ListPrice" class="form-control" [(ngModel)]="diamond.ListPrice"
+        <input type="number" placeholder="ListPrice" formControlName="ListPrice" class="form-control" [(ngModel)]="diamond.listPrice"
             [ngClass]="{ 'is-invalid': submitted && f.ListPrice.errors }" />
         <div *ngIf="submitted && f.ListPrice.errors" class="invalid-feedback">
             <div *ngIf="f.ListPrice.errors.required">ListPrice is required</div>
